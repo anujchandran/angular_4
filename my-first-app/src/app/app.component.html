@@ -1,2 +1,37 @@
-<input type="text" [(ngModel)]="name">
-<p>welcome to angular 4 {{name}}</p>
+<div>
+    <div class="search">
+        <h1>Offshore Guitar Store</h1>
+        <label>Search Guitar</label>
+        <input type="text">
+        
+        <label>Sort by:
+            <select>
+                <option value="name" selected>Name</option>
+                <option value="price">Price</option>
+            </select>
+        </label>
+        <br>
+        <label>
+            <input type="radio"  [(ngModel)]="sortFlag" (change)="sortAscending()" name="direction" checked>
+            Ascending
+        </label>
+        <label>	
+            <input type="radio" [(ngModel)]="sortFlag" (change)="sortAscending()" name="direction" value="reverse" >
+            Descending
+        </label>
+        <p>There are currently  guitars in store.</p>
+    </div>
+    <ul> 
+        <li class="itemHolder" *ngFor="let guitar of gultrDetails" >
+            <a href="#">
+                <img [src]="guitar.image"alt="image" >
+                <div>
+                    <h3> {{guitar.name}}</h3>
+                    <p class="rightDate">Price Revised on: {{guitar.dateAdded | date:'MM/yy'}} </p><p class="rightPrice">{{guitar.price}}</p>
+                    <p> </p>
+        
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
