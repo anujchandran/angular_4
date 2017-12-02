@@ -1,0 +1,36 @@
+<div>
+    <div class="search">
+        <h1>Offshore Guitar Store</h1>
+        <label>Search Guitar</label>
+        <input type="text" [(ngModel)] ="search" (keyup)= "searchGuitar()">
+        
+        <label>Sort by:
+            <select [(ngModel)]="sortingField">
+                <option value="name">Name</option>
+                <option value="price">Price</option>
+            </select>
+        </label>
+        <br>
+        <label>
+            <input type="radio"(change)="sortAscending('asc')" name="direction" [value]="asc" checked>
+            Ascending
+        </label>
+        <label>	
+            <input type="radio" (change)="sortAscending('desc')" name="direction" [value]="desc" >
+            Descending
+        </label>
+        <p>There are currently  guitars in store.</p>
+    </div>
+    <ul [dragula]='"first-bag"' [dragulaModel]='gultrDetails'> 
+        <li class="itemHolder" *ngFor="let guitar of gultrDetails" >
+            <a [routerLink]="['/guitar/1']">
+                <img [src]="guitar.image"alt="image" >
+                <div>
+                    <h3> {{guitar.name}}</h3>
+                    <p class="rightDate">Price Revised on: {{guitar.dateAdded | date:'MM/yy'}} </p><p class="rightPrice">{{guitar.price}}</p>
+                    <p> </p>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
